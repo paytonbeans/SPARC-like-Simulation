@@ -1,0 +1,52 @@
+// set.hex test case execution run as "./a.out set.hex"
+
+
+behavioral simulation of SPARC subset from set.hex
+  simulation values are in hexadecimal
+  execution statistics are in decimal
+
+contents of memory
+addr  value
+   0: 3d000100
+   1: bf2fa002
+   2: 00000000
+
+register values after each instruction has been executed
+instruction pc       mar      mdr      ir       cc rd rs1 rs2/imm
+      sethi 00000001 00000000 3d000100 3d000100 0  1e
+        sll 00000002 00000001 bf2fa002 bf2fa002 0  1f 1e  00000002
+       halt 00000003 00000002 00000000 00000000 0
+
+contents of registers
+  reg value     reg value     reg value     reg value
+   0: 00000000   8: 00000000  10: 00000000  18: 00000000
+   1: 00000000   9: 00000000  11: 00000000  19: 00000000
+   2: 00000000   a: 00000000  12: 00000000  1a: 00000000
+   3: 00000000   b: 00000000  13: 00000000  1b: 00000000
+   4: 00000000   c: 00000000  14: 00000000  1c: 00000000
+   5: 00000000   d: 00000000  15: 00000000  1d: 00000000
+   6: 00000000   e: 00000000  16: 00000000  1e: 00040000
+   7: 00000000   f: 00000000  17: 00000000  1f: 00100000
+
+contents of memory
+addr  value
+   0: 3d000100
+   1: bf2fa002
+   2: 00000000
+
+dynamic execution statistics
+  instruction fetches = 3
+  memory data reads   = 0
+  memory data writes  = 0
+     ba taken = 0
+  bge untaken = 0
+    bge taken = 0
+        sethi = 1
+          add = 0
+           or = 0
+          sub = 0
+        subcc = 0
+          sll = 1
+         load = 0
+        store = 0
+         halt = 1

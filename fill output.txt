@@ -1,0 +1,89 @@
+behavioral simulation of SPARC subset from fill.hex
+  simulation values are in hexadecimal
+  execution statistics are in decimal
+
+contents of memory
+addr  value
+   0: 82102008
+   1: 84100000
+   2: 80a0a004
+   3: 16800004
+   4: c4204002
+   5: 8400a001
+   6: 10bffffb
+   7: 00000000
+   8: 00000000
+   9: 00000000
+   a: 00000000
+   b: 00000000
+
+register values after each instruction has been executed
+instruction pc       mar      mdr      ir       cc rd rs1 rs2/imm
+         or 00000001 00000000 82102008 82102008 0   1  0  00000008
+         or 00000002 00000001 84100000 84100000 0   2  0   0
+      subcc 00000003 00000002 80a0a004 80a0a004 9   0  2  00000004
+bge untaken 00000004 00000003 16800004 16800004 9
+      store 00000005 00000008 00000000 c4204002 9   2  1   2
+        add 00000006 00000005 8400a001 8400a001 9   2  2  00000001
+   ba taken 00000002 00000006 10bffffb 10bffffb 9
+      subcc 00000003 00000002 80a0a004 80a0a004 9   0  2  00000004
+bge untaken 00000004 00000003 16800004 16800004 9
+      store 00000005 00000009 00000001 c4204002 9   2  1   2
+        add 00000006 00000005 8400a001 8400a001 9   2  2  00000001
+   ba taken 00000002 00000006 10bffffb 10bffffb 9
+      subcc 00000003 00000002 80a0a004 80a0a004 9   0  2  00000004
+bge untaken 00000004 00000003 16800004 16800004 9
+      store 00000005 0000000a 00000002 c4204002 9   2  1   2
+        add 00000006 00000005 8400a001 8400a001 9   2  2  00000001
+   ba taken 00000002 00000006 10bffffb 10bffffb 9
+      subcc 00000003 00000002 80a0a004 80a0a004 9   0  2  00000004
+bge untaken 00000004 00000003 16800004 16800004 9
+      store 00000005 0000000b 00000003 c4204002 9   2  1   2
+        add 00000006 00000005 8400a001 8400a001 9   2  2  00000001
+   ba taken 00000002 00000006 10bffffb 10bffffb 9
+      subcc 00000003 00000002 80a0a004 80a0a004 4   0  2  00000004
+  bge taken 00000008 00000003 16800004 16800004 4
+       halt 00000009 00000008 00000000 00000000 4
+
+contents of registers
+  reg value     reg value     reg value     reg value
+   0: 00000000   8: 00000000  10: 00000000  18: 00000000
+   1: 00000008   9: 00000000  11: 00000000  19: 00000000
+   2: 00000004   a: 00000000  12: 00000000  1a: 00000000
+   3: 00000000   b: 00000000  13: 00000000  1b: 00000000
+   4: 00000000   c: 00000000  14: 00000000  1c: 00000000
+   5: 00000000   d: 00000000  15: 00000000  1d: 00000000
+   6: 00000000   e: 00000000  16: 00000000  1e: 00000000
+   7: 00000000   f: 00000000  17: 00000000  1f: 00000000
+
+contents of memory
+addr  value
+   0: 82102008
+   1: 84100000
+   2: 80a0a004
+   3: 16800004
+   4: c4204002
+   5: 8400a001
+   6: 10bffffb
+   7: 00000000
+   8: 00000000
+   9: 00000001
+   a: 00000002
+   b: 00000003
+
+dynamic execution statistics
+  instruction fetches = 25
+  memory data reads   = 0
+  memory data writes  = 4
+     ba taken = 4
+  bge untaken = 4
+    bge taken = 1
+        sethi = 0
+          add = 4
+           or = 2
+          sub = 0
+        subcc = 5
+          sll = 0
+         load = 0
+        store = 4
+         halt = 1
